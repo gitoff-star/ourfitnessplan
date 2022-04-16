@@ -26,8 +26,8 @@ namespace ourfitnessplan.Models
         [Compare(nameof(Password),ErrorMessage ="Password and confirm Password should be same")]
         public string Confirm_password { get; set; }
         public string User_status { get; set; }
-
         
+        public DateTime CreatedOn{ get; set; }
         public string image_path { get; set; }
     }
 }

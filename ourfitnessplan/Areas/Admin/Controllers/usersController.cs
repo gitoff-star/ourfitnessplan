@@ -63,16 +63,16 @@ namespace ourfitnessplan.Areas.Admin.Controllers
 
                     //    Directory.CreateDirectory(dir);
                     //}
-                    string path = Path.Combine(Server.MapPath(dir), Path.GetFileName(image.FileName));
+                    string path = Path.Combine(Server.MapPath("~/Content/usersProfile"), Path.GetFileName(image.FileName));
                     image.SaveAs(path);
-                    users.image_path = path;
+                    users.image_path = "/Content/usersProfile/"+ image.FileName;
 
                 }
                 else {
                     users.image_path = Server.MapPath("~/Content/usersProfile/dummy.jpg").ToString();
                 }
                 //   users.image_path = form["image_path"];
-               
+                users.CreatedOn = DateTime.Now;
                 db.users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");

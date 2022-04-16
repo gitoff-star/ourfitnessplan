@@ -35,6 +35,7 @@
                             <th>Name</th>
                             <th>email</th>
                             <th>user status</th>
+                            <th>Created on</th>
                             <th>image</th>
                             <th>actions</th>
                         </tr>
@@ -42,29 +43,33 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
-                                </td>
-                                
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User_status)
-                                    @*@Html.(modelItem =>item.User_status)*@
-                                </td>
-                                <td>
-                                    <img src="~/Content/usersProfile/dummy.jpg" />
-                                    <img src="@item.image_path" alt="@item.image_path" style="height:200px; width:200px" />
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                                </td>
-                            </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User_status)
+                                @*@Html.(modelItem =>item.User_status)*@
+                            </td>
+                            <td>
+                                @*<img src="~/Content/usersProfile/dummy.jpg" />*@
+                                <img src="@item.image_path" alt="@item.image_path" class="img-circle" style="height:100px; width:100px" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedOn)
+                                @*@Html.(modelItem =>item.User_status)*@
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
