@@ -1,0 +1,198 @@
+﻿@model IEnumerable<ourfitnessplan.Models.tbl_posts>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    WebGrid webGrid = new WebGrid(source: Model);
+}
+@section Scripts
+{
+    @*<script src="@Url.Content("~/Scripts/jqueryFoo.js")"></script>*@
+    <link rel="stylesheet" href="~/Areas/Templates/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Areas/Templates/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Areas/Templates/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
+<!-- DataTables -->
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">DataTable with default features</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                <thead>
+                    <tr><th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="">Rendering engine</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="">Browser</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="">Platform(s)</th></tr>
+                </thead>
+                <tbody>
+
+
+
+
+                    <tr class="odd">
+
+                        <td class="sorting_1 dtr-control" tabindex="0" style="">Gecko</td>
+                        <td class="" style="">Firefox 1.0</td>
+                        <td class="" style="">Win 98+ / OSX.2+</td>
+                    </tr>
+                    <tr class="even">
+
+                        <td class="sorting_1 dtr-control" tabindex="0" style="">Gecko</td>
+                        <td class="" style="">Firefox 1.5</td>
+                        <td class="" style="">Win 98+ / OSX.2+</td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th rowspan="1" colspan="1" style="">Rendering engine</th>
+                        <th rowspan="1" colspan="1" style="">Browser</th>
+                        <th rowspan="1" colspan="1" style="">Platform(s)</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-5">
+            <div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">DataTable with default features</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="row">
+        <div class="col-sm-12">
+            @webGrid.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "table table-bordered table-striped dataTable dtr-inline" },
+        columns: webGrid.Columns(
+                 webGrid.Column("title", "title"),
+                 webGrid.Column("content", "content"),
+                 webGrid.Column("createdOn", "createdOn"),
+                 webGrid.Column("lastUpdated", "lastUpdated")))
+        </div>
+    </div>
+   
+</div>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.blogid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tags)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aurthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.deleteStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.blogid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.content)*@
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tags)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aurthor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deleteStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @foreach (var item in Model)
+    {
+        @Html.Raw(item.content)
+    }
+</div>
+@section Myscripts{
+    <script src="~/Areas/Templates/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Templates/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Areas/Templates/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+   
+    <script src="~/Areas/Templates/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Areas/Templates/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+   
+    <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+
+
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+
+}
+

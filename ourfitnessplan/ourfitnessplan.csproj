@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogpostController.cs" />
     <Compile Include="Areas\Admin\Controllers\usersController.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -155,7 +156,21 @@
     <Compile Include="Migrations\202204161827381_user creation date to dataTime.designer.cs">
       <DependentUpon>202204161827381_user creation date to dataTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204170912473_Createtbl_postsTable.cs" />
+    <Compile Include="Migrations\202204170912473_Createtbl_postsTable.designer.cs">
+      <DependentUpon>202204170912473_Createtbl_postsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204171024176_adding allow html for content.cs" />
+    <Compile Include="Migrations\202204171024176_adding allow html for content.designer.cs">
+      <DependentUpon>202204171024176_adding allow html for content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204171052214_Createtbl_CategoryTable.cs" />
+    <Compile Include="Migrations\202204171052214_Createtbl_CategoryTable.designer.cs">
+      <DependentUpon>202204171052214_Createtbl_CategoryTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\tbl_Category.cs" />
+    <Compile Include="Models\tbl_posts.cs" />
     <Compile Include="Models\usersContext.cs" />
     <Compile Include="Models\users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2608,6 +2623,11 @@
     <Content Include="Areas\Admin\Views\users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogpost\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogpost\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogpost\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogpost\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogpost\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2666,6 +2686,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204161827381_user creation date to dataTime.resx">
       <DependentUpon>202204161827381_user creation date to dataTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204170912473_Createtbl_postsTable.resx">
+      <DependentUpon>202204170912473_Createtbl_postsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204171024176_adding allow html for content.resx">
+      <DependentUpon>202204171024176_adding allow html for content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204171052214_Createtbl_CategoryTable.resx">
+      <DependentUpon>202204171052214_Createtbl_CategoryTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,83 @@
+﻿@model ourfitnessplan.Models.tbl_posts
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_posts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.blogid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blogid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tags)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tags)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aurthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aurthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deleteStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deleteStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
