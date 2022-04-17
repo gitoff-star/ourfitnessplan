@@ -35,26 +35,28 @@ namespace ourfitnessplan.Areas.Admin.Controllers
 
         public List<tbl_posts> GetPosts(string search, string sort, string sortdir, int skip, int pageSize, out int totalRecord)
         {
-            using (usersContext dc = new usersContext())
-            {
-                var v = (from a in dc.tbl_Posts
-                         where
-                                 a.aurthor.Contains(search) ||
-                                 a.title.Contains(search) ||
-                                 a.content.Contains(search) ||
-                                 a.category.Contains(search) 
-                                
-                         select a
-                                );
+           
+             
+                var v = db.tbl_Posts.Where(
+                                    a => a.aurthor.Contains(search) ||
+                                  a.title.Contains(search) ||
+                                  a.content.Contains(search) ||
+                                  a.category.Contains(search)
+
+                );
                 totalRecord = v.Count();
-                //v = v.OrderBy(sort);
-                //v = v.OrderBy(sort + " " + sortdir);
+            v.OrderBy(a => a.aurthor);
+              //  v = v.OrderBy(sort);
+             //   v = v.OrderBy(sort + " " + sortdir);
+            
+
                 if (pageSize > 0)
                 {
-                    v = v.Skip(skip).Take(pageSize);
+                v = v.OrderBy(a => a.aurthor).Skip(skip).Take(pageSize);
+                  //  v = v.Skip(skip).Take(pageSize);
                 }
                 return v.ToList();
-            }
+            
         }
 
 

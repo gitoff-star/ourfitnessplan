@@ -1,16 +1,24 @@
 ﻿@model IEnumerable<ourfitnessplan.Models.tbl_posts>
-
+@using GridMvc.Html
 @{
+
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    WebGrid webGrid = new WebGrid(source: Model);
+    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+
 }
 @section Scripts
 {
+
     @*<script src="@Url.Content("~/Scripts/jqueryFoo.js")"></script>*@
     <link rel="stylesheet" href="~/Areas/Templates/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Areas/Templates/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Areas/Templates/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <script src="~/Scripts/gridmvc.lang.ru.js"></script>
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <script src="~/Scripts/gridmvc.min.js"></script>
+    <script src="~/Scripts/gridmvc.js"></script>
 }
 <!-- DataTables -->
 
@@ -69,16 +77,29 @@
     <!-- /.card-header -->
     <div class="row">
         <div class="col-sm-12">
-            @webGrid.GetHtml(
-        htmlAttributes: new { @id = "WebGrid", @class = "table table-bordered table-striped dataTable dtr-inline" },
-        columns: webGrid.Columns(
-                 webGrid.Column("title", "title"),
-                 webGrid.Column("content", "content"),
-                 webGrid.Column("createdOn", "createdOn"),
-                 webGrid.Column("lastUpdated", "lastUpdated")))
+            <div>
+                @Html.Grid(Model).Named("post").Columns(
+    c =>
+    {
+        c.Add(x => x.aurthor).Titled("aurthor").Filterable(true).Sortable(true);
+        c.Add(x => x.title).Titled("title").Filterable(true).Sortable(true);
+        c.Add(x => x.content).Titled("content").Filterable(true).Sortable(true);
+    }).WithPaging(5).EmptyText("empty").
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        @grid.Pager(mode: WebGridPagerModes.All)
+                    </div>
+                </div>
+
+                @Html.Hidden("dir", grid.SortDirection)
+                @Html.Hidden("col", grid.SortColumn)
+
+            </div>
         </div>
     </div>
-   
+
 </div>
 
 
@@ -164,11 +185,11 @@
     <script src="~/Areas/Templates/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Areas/Templates/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/Areas/Templates/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-   
+
     <script src="~/Areas/Templates/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="~/Areas/Templates/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
     <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-   
+
     <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="~/Areas/Templates/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
