@@ -171,6 +171,14 @@
     <Compile Include="Migrations\202204171052214_Createtbl_CategoryTable.designer.cs">
       <DependentUpon>202204171052214_Createtbl_CategoryTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204181507411_coverimagetoblog.cs" />
+    <Compile Include="Migrations\202204181507411_coverimagetoblog.designer.cs">
+      <DependentUpon>202204181507411_coverimagetoblog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204181545556_reqioredImagecoverchanged.cs" />
+    <Compile Include="Migrations\202204181545556_reqioredImagecoverchanged.designer.cs">
+      <DependentUpon>202204181545556_reqioredImagecoverchanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\tbl_Category.cs" />
     <Compile Include="Models\tbl_posts.cs" />
@@ -2667,6 +2675,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Content\BlogsData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2705,6 +2714,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204171052214_Createtbl_CategoryTable.resx">
       <DependentUpon>202204171052214_Createtbl_CategoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204181507411_coverimagetoblog.resx">
+      <DependentUpon>202204181507411_coverimagetoblog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204181545556_reqioredImagecoverchanged.resx">
+      <DependentUpon>202204181545556_reqioredImagecoverchanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

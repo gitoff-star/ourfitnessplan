@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,7 +23,7 @@ namespace ourfitnessplan.Areas.Admin.Controllers
 
         public ActionResult Index(int page = 1, string sort = "FirstName", string sortdir = "asc", string search = "")
         {
-            int pageSize = 10;
+            int pageSize = 20;
             int totalRecord = 0;
             if (page < 1) page = 1;
             int skip = (page * pageSize) - pageSize;
@@ -77,10 +78,22 @@ namespace ourfitnessplan.Areas.Admin.Controllers
             }
             return View(tbl_posts);
         }
-
+       
         // GET: Admin/Blogpost/Create
-        public ActionResult Create()
+        [ValidateInput(false)]
+        public ActionResult Create(tbl_posts tbl_posts)
         {
+            //  tbl_posts.title = "test";
+            // tbl_posts.content = "heellow";
+
+
+            
+            if (tbl_posts.id != 0)
+            {
+                var data = db.tbl_Posts.Find(tbl_posts.id);
+                return View(data);
+            }
+            ViewBag.Coverimage = "null";
             return View();
         }
 
@@ -90,16 +103,53 @@ namespace ourfitnessplan.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,blogid,title,content,tags,aurthor,CreatedOn,lastUpdated,deleteStatus")] tbl_posts tbl_posts, FormCollection content)
+        public ActionResult Create([Bind(Include = "id,blogid,title,content,tags,aurthor,CreatedOn,lastUpdated,deleteStatus,CoverImage")] tbl_posts tbl_posts, HttpPostedFileBase image)
         {
-            if (ModelState.IsValid)
+           
+            if (!ModelState.IsValid)
             {
-                tbl_posts.CreatedOn = DateTime.Now;
-                tbl_posts.lastUpdated = DateTime.Now;
-                db.tbl_Posts.Add(tbl_posts);
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+
+
+                if (tbl_posts.id == 0) {
+
+                    if (image != null)
+                    {
+                        string path = Path.Combine(Server.MapPath("~/Content/BlogsData"), Path.GetFileName(image.FileName));
+                        image.SaveAs(path);
+                        tbl_posts.CoverImage = "/Content/BlogsData/" + image.FileName;
+                    }
+                    else {
+                        ViewBag.checkCoverImage = "null";
+                        return View(tbl_posts);
+                    }
+                  
+                    DateTime date = DateTime.Now;
+                    tbl_posts.CreatedOn = date;
+                    tbl_posts.lastUpdated = date;
+                    tbl_posts.blogid = tbl_posts.category + "-" + tbl_posts.title;
+                    tbl_posts.deleteStatus = false;
+                    db.tbl_Posts.Add(tbl_posts);
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    tbl_posts.id = 0;
+                    tbl_posts.lastUpdated = DateTime.Now;
+                   // tbl_posts.blogid = tbl_posts.blogid;
+                    tbl_posts.deleteStatus = false;
+                    db.tbl_Posts.Add(tbl_posts);
+
+                    db.SaveChanges();
+                    //db.Entry(tbl_posts).State = EntityState.Modified; //not overwriting current blog ,updating with the new id and last blog id
+                    //db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+               
             }
 
             return View(tbl_posts);

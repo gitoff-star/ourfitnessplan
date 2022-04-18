@@ -12,11 +12,17 @@ namespace ourfitnessplan.Models
         [Key]
         public int id { get; set; }
 
+
         public string blogid { get; set; }
 
+        [Required]
         public string title { get; set; }
         public string category { get; set; }
+        
+       // [DataType(DataType.Upload)]
+        public string CoverImage { get; set; }
 
+        [Required]
         [AllowHtml]
         [DataType(DataType.MultilineText)]
         public string content{ get; set; }
