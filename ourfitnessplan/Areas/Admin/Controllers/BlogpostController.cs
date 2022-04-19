@@ -106,7 +106,7 @@ namespace ourfitnessplan.Areas.Admin.Controllers
         public ActionResult Create([Bind(Include = "id,blogid,title,content,tags,aurthor,CreatedOn,lastUpdated,deleteStatus,CoverImage")] tbl_posts tbl_posts, HttpPostedFileBase image)
         {
            
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
 

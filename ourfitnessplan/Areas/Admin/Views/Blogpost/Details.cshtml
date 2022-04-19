@@ -5,104 +5,90 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="align-self-center">Blog Detail</h2>
-<div class="container-fluid text-center">
-    <div class="row">
-        <img class="card-img-overlay" src="@Model.CoverImage" alt="@Model.CoverImage" />
-    </div>
-    <div class="row content">
-        
-        <div class="col-sm-8 text-left">
-            <h1>Welcome</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <hr>
-            <h3>Test</h3>
-            <p>Lorem ipsum...</p>
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>ADS</p>
-            </div>
-            <div class="well">
-                <p>ADS</p>
-            </div>
-        </div>
-    </div>
-</div>
+@section Scripts
+{
+    <link href="~/Content/Blogcss.css" rel="stylesheet" />
+  
+}
 
 
+<main class="blog-post">
+    <div class="container">
+        <h1 class="edica-page-title" data-aos="fade-up">@Model.title</h1>
+        <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">Written by @Model.aurthor• @Model.CreatedOn• Featured • 4 Comments</p>
+        <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
+            <img src="@Model.CoverImage" alt="featured image" class="w-100">
+        </section>
+        <section class="post-content">
 
-
-
-<div>
-    <h2> @Html.DisplayFor(model => model.blogid)</h2>
-    <hr />
-    <div class="row">
-        <div class="card "> @Html.DisplayFor(model => model.title)</div>
-    </div>
-
-    <dl class="dl-horizontal">
-      
-
-        <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.content)
-        </dt>
-
-        <dd>
             @Html.Raw(Model.content)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tags)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tags)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.aurthor)
-        </dt>
+        </section>
 
-        <dd>
-            @Html.DisplayFor(model => model.aurthor)
-        </dd>
+        <div class="row-cols-2 btn-group-lg" style="color:white; padding-bottom:10px">
+            <a class="btn btn-primary btn-lg">Edit</a>
+            <a class="btn btn-danger btn-lg">Delete</a>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
+        </div>
+        @*<div class="row">
+            <div class="col-lg-9 mx-auto">
+                <section class="related-posts">
+                    <h2 class="section-title mb-4" data-aos="fade-up">Related Posts</h2>
+                    <div class="row">
+                        <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                            <img src="assets/images/blog_post_related_1.png" alt="related post" class="post-thumbnail">
+                            <p class="post-category">Blog post</p>
+                            <h5 class="post-title">Front becomes an official Instagram</h5>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                            <img src="assets/images/blog_post_related_2.png" alt="related post" class="post-thumbnail">
+                            <p class="post-category">Blog post</p>
+                            <h5 class="post-title">Front becomes an official Instagram</h5>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-left" data-aos-delay="100">
+                            <img src="assets/images/blog_post_related_3.png" alt="related post" class="post-thumbnail">
+                            <p class="post-category">Blog post</p>
+                            <h5 class="post-title">Front becomes an official Instagram</h5>
+                        </div>
+                    </div>
+                </section>
+                <section class="comment-section">
+                    <h2 class="section-title mb-5" data-aos="fade-up">Leave a Reply</h2>
+                    <form action="/" method="post">
+                        <div class="row">
+                            <div class="form-group col-12" data-aos="fade-up">
+                                <label for="comment" class="sr-only">Comment</label>
+                                <textarea name="comment" id="comment" class="form-control" placeholder="Comment" rows="10">Comment</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4" data-aos="fade-right">
+                                <label for="name" class="sr-only">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name*">
+                            </div>
+                            <div class="form-group col-md-4" data-aos="fade-up">
+                                <label for="email" class="sr-only">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email*" required>
+                            </div>
+                            <div class="form-group col-md-4" data-aos="fade-left">
+                                <label for="website" class="sr-only">Website</label>
+                                <input type="url" name="website" id="website" class="form-control" placeholder="Website*">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" data-aos="fade-up">
+                                <input type="submit" value="Send Message" class="btn btn-warning">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>*@
+    </div>
+</main>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastUpdated)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastUpdated)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.deleteStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.deleteStatus)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
