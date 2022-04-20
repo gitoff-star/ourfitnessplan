@@ -19,7 +19,10 @@ namespace ourfitnessplan.Controllers
 
             return View();
         }
-
+        public ActionResult Blogs()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
