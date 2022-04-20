@@ -21,6 +21,8 @@ namespace ourfitnessplan.Controllers
         }
         public ActionResult Blogs()
         {
+
+            //merge
             return View();
         }
         public ActionResult Contact()
