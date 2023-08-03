@@ -1,4 +1,4 @@
-##### Blog Outfitnessfplan Admin Panel and Blog Application <br><br>
+## Blog Outfitnessfplan Admin Panel and Blog Application <br><br>
 This repository contains the Blog Outfitnessfplan Admin Panel and Blog Application developed using Visual Studio, ASP.NET Core, C#, Bootstrap, JavaScript, CSS, HTML, and SQL Server. The project aims to provide a comprehensive admin panel for managing blog posts and categories, along with a user-friendly blog application for publishing and viewing blog content related to fitness and health.
 
 ### Features<br><br>
